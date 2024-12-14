@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+
+// Клас для фінансової транзакції
+class FinancialTransaction {
+  final double amount;
+  final String type; // 'debit' або 'credit'
+  final String description;
+  final DateTime date;
+
+  FinancialTransaction({
+    required this.amount,
+    required this.type,
+    required this.description,
+    required this.date,
+  });
+}
+
+// Клас для фінансової подушки
+class FinancialCushion {
+  double savingsGoal;
+  double currentSavings;
+
+  FinancialCushion({required this.savingsGoal, required this.currentSavings});
+
+  double get remainingToGoal {
+    return savingsGoal - currentSavings;
+  }
+}
+
+// Головний віджет програми
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Фінансова грамотність',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Colors.white, // Білий фон
+      ),
+      home: FinancialLiteracyScreen(),
+    );
+  }
+}
+
+class FinancialLiteracyScreen extends StatelessWidget {
+  final List<FinancialTransaction> transactions = [
+    FinancialTransaction(
+      amount: 1000.0,
+      type: 'credit',
+      description: 'Зарплата',
+      date: DateTime(2024, 12, 1),
+    ),
+    FinancialTransaction(
+      amount: 500.0,
+      type: 'debit',
+      description: 'Оплата комунальних послуг',
+      date: DateTime(2024, 12, 2),
+    ),
+    FinancialTransaction(
+      amount: 200.0,
+      type: 'debit',
+      description: 'Продукти',
+      date: DateTime(2024, 12, 3),
+    ),
+  ];
+
+  final FinancialCushion cushion = FinancialCushion(
+    savingsGoal: 5000.0,
+    currentSavings: 1500.0,
+  );
+
+  // Функція для розрахунку тюду (непередбачувані витрати)
+  double calculateEmergencyFund(double monthlyExpenses) {
+    return monthlyExpenses * 3; // Резерв на 3 місяці
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Сума всіх доходів
+    double totalIncome = transactions
+        .where((t) => t.type == 'credit')
+        .fold(0.0, (sum, item) => sum + item.amount);
+
+    // Сума всіх витрат
+    double totalExpenses = transactions
+        .where((t) => t.type == 'debit')
+        .fold(0.0, (sum, item) => sum + item.amount);
+
+    // Розрахунок чистого прибутку
+    double netProfit = totalIncome - totalExpenses;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Фінансова грамотність'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: <Widget>[
+            Text(
+              'Фінансова логістика',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+               "Застосунок для розрахування ваших витрат за місяць"
+            ),
+            Text(
+              "Чат-Бот"),
+            Text(
+            "Співробітницвто з нвчвльними закладами"
+            ),
+            Text(
+             "Навчвльні курси "),
+            
+            Text(
+              "Колоборації з іншими проектами повязані з фінансово грамотною просвітою"),
+            
+            Text(
+             "Побудова вашої фінансової подушки" ),
+            
+            
+                 
+                
+              
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
