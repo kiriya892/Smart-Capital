@@ -1,0 +1,205 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const SmartCapitalApp());
+}
+
+class SmartCapitalApp extends StatelessWidget {
+  const SmartCapitalApp({super.key});
+class BannerSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      color: Colors.blueAccent,
+      child: Column(
+        children: [
+          Text(
+            'Екосистема фінансової грамотності',
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Ваш ключ до фінансової свободи та впевненого майбутнього!',
+            style: TextStyle(fontSize: 18, color: Colors.white70),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Дізнатись більше'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.blueAccent,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Секція опису
+class DescriptionSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Що ми пропонуємо?',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Наші курси та інструменти допоможуть вам опанувати основи фінансової грамотності, '
+            'розробити особистий фінансовий план та досягти фінансової незалежності.',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Smart Capital',
+      theme: ThemeData(
+        primaryColor: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: const LandingPage(),
+    );
+  }
+}
+
+class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0, top: 10.0),
+            child: Image.asset(
+              'assets/logo.png', // Змініть на шлях до логотипу
+              height: 60,
+              width: 60,
+            ),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Наші послуги:',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ServiceButton(
+                  title: 'Онлайн курси',
+                  onPressed: () {},
+                ),
+                const SizedBox(width: 15),
+                ServiceButton(
+                  title: 'Мобільний додаток',
+                  onPressed: () {},
+                ),
+                const SizedBox(width: 15),
+                ServiceButton(
+                  title: 'Персональні поради',
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Зв’яжіться з нами:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const ContactInfo(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ServiceButton extends StatelessWidget {
+  final String title;
+  final VoidCallback onPressed;
+
+  const ServiceButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      ),
+      onPressed: onPressed,
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 16),
+      ),
+    );
+  }
+}
+
+class ContactInfo extends StatelessWidget {
+  const ContactInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: const [
+        Text(
+          'Телефон: +380 (66) 123-45-67',
+          style: TextStyle(fontSize: 16),
+        ),
+        Text(
+          'Email: info@smartcapital.com',
+          style: TextStyle(fontSize: 16),
+        ),
+        Text(
+          'Адреса: вул. Прикладна, 123, Київ, Україна',
+          style: TextStyle(fontSize: 16),
+        ),
+      ],
+    );
+  }
+}
